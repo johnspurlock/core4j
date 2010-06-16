@@ -10,11 +10,12 @@ import org.core4j.Func;
 import org.core4j.Func1;
 import org.core4j.Funcs;
 import org.core4j.Predicate1;
+import org.core4j.Predicates;
 import org.core4j.ReadOnlyIterator;
 import org.junit.Test;
 
 
-public class EnumerableTests {
+public class TestEnumerable {
 
 	@Test
 	public void testEnumerable(){
@@ -44,7 +45,7 @@ public class EnumerableTests {
 		Assert.assertEquals("3,9",one.intersect(two).join(","));
 		
 		Assert.assertEquals("3,9,1",two.where(IS_ODD).join(","));
-		Assert.assertEquals("8,6,4,4,0",two.where(Funcs.not(IS_ODD)).join(","));
+		Assert.assertEquals("8,6,4,4,0",two.where(Predicates.not(IS_ODD)).join(","));
 		Assert.assertEquals("2,4,6,8,10",Enumerable.range(1,5).select(TIMES_TWO).join(","));
 		
 		Assert.assertEquals("onetwothree", Enumerable.create("one","two","three").selectMany(CHARS).join(""));

@@ -1,8 +1,26 @@
 package org.core4j;
 
 import java.lang.reflect.Field;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CoreUtils {
+
+	public static String replace(String input, String regex, int options, Func1<Matcher,String> evaluator){
+		Pattern pattern =  Pattern.compile(regex,options);
+		Matcher matcher = pattern.matcher(input);
+		StringBuffer sb = new StringBuffer();
+		while (matcher.find()) {
+			String replacement = evaluator.apply(matcher);
+			matcher.appendReplacement(sb, replacement);
+		}
+		matcher.appendTail(sb);
+		return sb.toString();
+	}
+
+
+
+
 
 	
 	public static Field getField(Class<?> type, String name){

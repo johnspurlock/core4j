@@ -658,6 +658,15 @@ public class Enumerable<T> implements Iterable<T>
 			}});
 	}
 	
+	public <TOutput> Enumerable<TOutput> ofType(Class<TOutput> clazz) {
+		final Class<TOutput> finalClazz = clazz;
+		return this.where(new Predicate1<T>(){
+			public boolean apply(T input) {
+				return input != null && finalClazz.isAssignableFrom(input.getClass());
+			}})
+			.cast(clazz);
+	}
+	
 	public Enumerable<T> skip(int count) {
 		return Enumerable.create(new SkipEnumerable<T>(this, count));
 	}

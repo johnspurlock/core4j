@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="dist" name="odata4j-core-dist">
+	
+	<!-- this property labels the build -->
+	<property name="dist.version" value="SNAPSHOT-20100615" />
+	<!-- <property name="dist.version" value="0.1" /> -->
+	
+	<property name="dist.projectname" value="core4j" />
+	<property name="dist.versiondir" value="dist/${dist.version}" />
+	<property name="dist.archivename" value="${dist.projectname}-archive-${dist.version}" />
+	<property name="dist.archivedir" value="${dist.versiondir}/${dist.archivename}" />
+	<property name="dist.coredir" value="${dist.archivedir}/${dist.projectname}" />
+	<property name="dist.corejar" value="${dist.coredir}/${dist.projectname}-${dist.version}.jar" />
+	
+	<target name="dist">
+		
+		<!-- rebuild -->
+		<ant antfile="build.xml" target="build" />
+
+		<!-- clean dir -->
+		<delete dir="${dist.versiondir}" />
+		<mkdir dir="${dist.coredir}" />
+
+		<!-- create core4j.jar -->
+		<jar destfile="${dist.corejar}" basedir="bin" includes="**/*.class" excludes="org/core4j/test/**" />
+		
+		
+		<!-- create archive zip -->
+		<zip destfile="${dist.versiondir}/${dist.archivename}.zip" basedir="${dist.archivedir}" />
+
+	</target>
+</project>

@@ -2,29 +2,12 @@ package org.core4j;
 
 import java.lang.reflect.Field;
 
+import org.core4j.xml.XElement;
+
 public class Funcs {
 
 	
-	public static <T,TField> Predicate1<T> byField(Class<T> clazz, String fieldName, Class<TField> fieldClass, final TField fieldValue){
-		final Field field = CoreUtils.getField(clazz, fieldName);
-		field.setAccessible(true);
-		return wrap(new ThrowingPredicate1<T>(){	
-			@SuppressWarnings("unchecked")
-			public boolean apply(T input) throws Exception {
-				TField value = (TField) field.get(input);
-				if (value==null)
-					return fieldValue==null;
-				else
-					return value.equals(fieldValue);
-			}});
-	}
 	
-	public static <T> Predicate1<T> not(final Predicate1<T> predicate){
-		return new Predicate1<T>(){	
-			public boolean apply(T input) {
-				return !predicate.apply(input);
-			}};
-	}
 	public static <TResult> Func1<TResult,TResult> identity(Class<TResult> clazz){
 		return new Func1<TResult,TResult>(){
 			public TResult apply(TResult input) {
@@ -38,17 +21,7 @@ public class Funcs {
 			}};
 	}
 	
-	public static <T> Predicate1<T> wrap(final ThrowingPredicate1<T> fn){
-		return new Predicate1<T>(){
-			public boolean apply(T input) {
-				try {
-					return fn.apply(input);
-				} catch(Exception e){
-					throw new RuntimeException(e);
-				}
-			}};
-	}
-	
+
 	public static <T,TResult> Func1<T,TResult> wrap(final ThrowingFunc1<T,TResult> fn){
 		return new Func1<T,TResult>(){
 			public TResult apply(T input) {
@@ -85,5 +58,19 @@ public class Funcs {
 		}
 		
 		
+	}
+	
+	public static Func1<XElement,String> elementValue(){
+		return new Func1<XElement,String>(){
+			public String apply(XElement input) {
+				return input.getValue();
+			}};
+	}
+	
+	public static <TWhatever,TConstant> Func1<TWhatever,TConstant> constant(Class<TWhatever> whateverClass, final TConstant constant){
+		return new  Func1<TWhatever,TConstant>(){
+			public TConstant apply(TWhatever input) {
+				return constant;
+			}};
 	}
 }

@@ -3,6 +3,7 @@ package org.core4j;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
@@ -11,6 +12,21 @@ import java.util.Iterator;
 
 public class Enumerables {
 
+	
+	public static Enumerable<String> lines(final InputStream stream){
+	
+		final ThrowingFunc<Reader> source = new ThrowingFunc<Reader>(){
+			public Reader apply() throws Exception {
+				return new InputStreamReader(stream);
+			}};
+		return Enumerable.createFromIterator(new Func<Iterator<String>>(){
+			public Iterator<String> apply() {
+				return new ReaderLinesIterator(source);
+			}});
+	}
+
+
+	
 	public static Enumerable<Character> chars(String value){
 		return chars(value.toCharArray());
 	}
