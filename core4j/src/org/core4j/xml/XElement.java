@@ -86,7 +86,7 @@ public class XElement extends XContainer implements XNameable {
 		
 		List<XNode> nodes = nodes().toList();
 		if (nodes.size()==0) {
-			sb.append("/>");
+			sb.append(" />");
 		
 		} else {
 
@@ -99,7 +99,6 @@ public class XElement extends XContainer implements XNameable {
 					onlyText=false;
 					sb.append(newline);
 					sb.append(node.toString(format.incrementLevel()));
-					
 				}
 			}
 			if (!onlyText)

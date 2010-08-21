@@ -32,6 +32,7 @@ public class TestEnumerable {
 		Assert.assertEquals("10",Enumerable.range(10,1).join(","));
 		Assert.assertEquals("1",Enumerable.range(1,1000000).take(1).join(","));
 		Assert.assertEquals("3,4,5",Enumerable.range(1,5).skip(2).join(","));
+		Assert.assertEquals("2,3,4,5",Enumerable.range(1,5).skipWhile(IS_ODD).join(","));
 		Assert.assertEquals((Integer)10,Enumerable.range(1,4).sum(Integer.class));
 		
 		Enumerable<Integer> one= Enumerable.create(5, 3, 9, 7, 5, 9, 3, 7);

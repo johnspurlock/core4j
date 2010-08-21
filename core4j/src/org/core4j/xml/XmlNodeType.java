@@ -7,4 +7,6 @@ public enum XmlNodeType {
 	DOCUMENT,
 	TEXT,
 	COMMENT,
+	PROCESSING_INSTRUCTION,
+	DOCUMENT_TYPE,
 }

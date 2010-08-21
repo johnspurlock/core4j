@@ -22,9 +22,11 @@ import org.core4j.Predicates;
 import org.core4j.ReadOnlyIterator;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Comment;
+import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.ProcessingInstruction;
 import org.w3c.dom.Text;
 
 public abstract class XContainer extends XNode {
@@ -65,13 +67,17 @@ public abstract class XContainer extends XNode {
 	}
 
 
-	private static XNode parseNode(Node domNode){
+	protected static XNode parseNode(Node domNode){
 		if (domNode instanceof Element)
 			return XElement.parse((Element)domNode);
 		if (domNode instanceof Text)
 			return new XText(((Text)domNode).getTextContent());
 		if (domNode instanceof Comment)
 			return new XComment(((Comment)domNode).getTextContent());
+		if (domNode instanceof ProcessingInstruction)
+			return new XProcessingInstruction(((ProcessingInstruction)domNode).getTarget(), ((ProcessingInstruction)domNode).getData());
+		if (domNode instanceof DocumentType)
+			return new XDocumentType(((DocumentType)domNode).getName(),((DocumentType)domNode).getInternalSubset());
 		
 		throw new UnsupportedOperationException("implement " + domNode);
 	}
@@ -80,6 +86,10 @@ public abstract class XContainer extends XNode {
 	
 	public Enumerable<XElement> elements(){
 		return nodes().ofType(XElement.class);
+	}
+	
+	public Enumerable<XElement> elements(String name){
+		return nodes().ofType(XElement.class).where(Predicates.<XElement>xnameEquals(name));
 	}
 	
 	public XElement element(String name) {
@@ -148,7 +158,7 @@ public abstract class XContainer extends XNode {
 	
 	
 	
-	private static Enumerable<Node> domNodes(final NodeList nodes){
+	protected static Enumerable<Node> domNodes(final NodeList nodes){
 		return Enumerable.createFromIterator(new Func<Iterator<Node>>(){
 			public Iterator<Node> apply() {
 				return new NodeListIterator(nodes);

@@ -1,6 +1,9 @@
 package org.core4j;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.core4j.xml.XElement;
 
@@ -73,4 +76,28 @@ public class Funcs {
 				return constant;
 			}};
 	}
+	
+	public static <TKey,TValue> Func1<Entry<TKey,TValue>,TKey> mapEntryKey(){
+		return new Func1<Entry<TKey,TValue>,TKey>(){
+			public TKey apply(Entry<TKey, TValue> input) {
+				return input.getKey();
+			}};
+	}
+	public static <TKey,TValue> Func1<Entry<TKey,TValue>,TValue> mapEntryValue(Map<TKey,TValue> values){
+		return new Func1<Entry<TKey,TValue>,TValue>(){
+			public TValue apply(Entry<TKey, TValue> input) {
+				return input.getValue();
+			}};
+	}
+	
+	public static <TInstance,TReturn> Func1<TInstance,TReturn> method(final Class<TInstance> instanceClass, Class<TReturn> returnClass, final String methodName){
+		
+		return Funcs.wrap(new ThrowingFunc1<TInstance,TReturn>(){
+			public TReturn apply(TInstance input) throws Exception {
+				Method method = instanceClass.getMethod(methodName);
+				Object rt = method.invoke(input);
+				return (TReturn) rt;
+			}});
+	}
+	
 }

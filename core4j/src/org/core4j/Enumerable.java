@@ -693,6 +693,28 @@ public class Enumerable<T> implements Iterable<T>
 	}
 	
 	
+	public Enumerable<T> skipWhile(final Predicate1<T> predicate) {
+		
+		final Boolean[] skipping = new Boolean[]{true};
+		
+		return this.where(new Predicate1<T>(){
+
+			@Override
+			public boolean apply(T input) {
+				if (!skipping[0])
+					return true;
+				
+				if (!predicate.apply(input)){
+					skipping[0] = false;
+					return true;
+				}
+				return false;
+			}});
+	}
+	
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public Enumerable<T> intersect(Enumerable<T> other){
 		return intersect(new Enumerable[]{other});

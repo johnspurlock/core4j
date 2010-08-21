@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="dist" name="odata4j-core-dist">
+<project basedir="." default="dist" name="core4j-core-dist">
 	
-	<!-- this property labels the build -->
-	<property name="dist.version" value="SNAPSHOT-20100615" />
-	<!-- <property name="dist.version" value="0.1" /> -->
+	<!--<property name="dist.version" value="SNAPSHOT-20100821" />  -->
+	<property name="dist.version" value="0.3" />
 	
 	<property name="dist.projectname" value="core4j" />
 	<property name="dist.versiondir" value="dist/${dist.version}" />
 	<property name="dist.archivename" value="${dist.projectname}-archive-${dist.version}" />
 	<property name="dist.archivedir" value="${dist.versiondir}/${dist.archivename}" />
 	<property name="dist.coredir" value="${dist.archivedir}/${dist.projectname}" />
-	<property name="dist.corejar" value="${dist.coredir}/${dist.projectname}-${dist.version}.jar" />
+	<property name="dist.javadocdir" value="${dist.coredir}/javadoc" />
+	<property name="dist.corejar.bin" value="${dist.coredir}/${dist.projectname}-${dist.version}.jar" />
+	<property name="dist.corejar.src" value="${dist.coredir}/${dist.projectname}-${dist.version}-sources.jar" />
+	<property name="dist.corejar.doc" value="${dist.coredir}/${dist.projectname}-${dist.version}-javadoc.jar" />
 	
 	<target name="dist">
 		
@@ -21,9 +23,38 @@
 		<delete dir="${dist.versiondir}" />
 		<mkdir dir="${dist.coredir}" />
 
-		<!-- create core4j.jar -->
-		<jar destfile="${dist.corejar}" basedir="bin" includes="**/*.class" excludes="org/core4j/test/**" />
+		<!-- create core4j jar -->
+		<jar destfile="${dist.corejar.bin}" basedir="bin" includes="**/*.class" excludes="org/core4j/test/**" />
 		
+		<!-- create core4j source jar -->
+		<jar destfile="${dist.corejar.src}" basedir="src" includes="**/*.java" excludes="org/core4j/test/**" />
+		
+		<!-- create core4j doc jar -->
+		<javadoc 
+			destdir="${dist.javadocdir}"
+			defaultexcludes="yes" access="public" 
+			useexternalfile="true"
+			use="true" version="false" splitindex="true" 
+			doctitle="${dist.projectname} - ${dist.version}" 
+			windowtitle="${dist.projectname} - ${dist.version}" 
+			nodeprecated="true" nodeprecatedlist="false" noindex="false"
+			nonavbar="false" notree="false" verbose="false"
+			source="1.6">
+	    	<fileset dir="src">
+	             <include name="**/*.java"/>
+	        </fileset>
+			<link href="http://java.sun.com/javase/6/docs/api/" />
+		    <bottom><![CDATA[<i><a href="http://core4j.org">http://core4j.org</a></i>]]></bottom>
+		</javadoc>
+		<jar destfile="${dist.corejar.doc}" basedir="${dist.javadocdir}" includes="*/**" excludes="org/core4j/test/**" />
+		
+		<!-- update latest javadoc -->
+		<delete dir="doc/javadoc" />
+		<copy todir="doc/javadoc" >
+			<fileset dir="${dist.javadocdir}">
+            	<include name="**/*"/>
+        	</fileset>
+		</copy>
 		
 		<!-- create archive zip -->
 		<zip destfile="${dist.versiondir}/${dist.archivename}.zip" basedir="${dist.archivedir}" />

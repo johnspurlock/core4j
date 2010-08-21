@@ -14,10 +14,10 @@ public class TestXDocument {
 	
 	public static void main(String[] args) throws Exception {
 		
-		
+		parse("WithDoctype");
 		//print("RSS-CONNECTEDSHOW");
 //		parse("xml1");
-		print("RSS-THISWEEK");
+		//print("RSS-THISWEEK");
 //		parse("RSS-ITCONVERSATIONS");
 		
 	}
