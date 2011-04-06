@@ -6,10 +6,10 @@ package org.core4j;
  */
 public interface Predicate1<T> {
 
-	/**
-	 * Apply this function, returning true or false
-	 * @param input Predicate argument
-	 * @return true or false
-	 */
-	public abstract boolean apply(T input);
+    /**
+     * Apply this function, returning true or false
+     * @param input Predicate argument
+     * @return true or false
+     */
+    public abstract boolean apply(T input);
 }

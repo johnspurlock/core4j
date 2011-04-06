@@ -6,11 +6,11 @@ package org.core4j;
  */
 public interface ThrowingPredicate1<T> {
 
-	/**
-	 * Apply this function, returning true or false (or throwing a checked exception)
-	 * @param input Predicate argument
-	 * @return true or false
-	 * @throws Exception A checked exception
-	 */
-	public abstract boolean apply(T input) throws Exception;
+    /**
+     * Apply this function, returning true or false (or throwing a checked exception)
+     * @param input Predicate argument
+     * @return true or false
+     * @throws Exception A checked exception
+     */
+    public abstract boolean apply(T input) throws Exception;
 }
