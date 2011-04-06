@@ -3,7 +3,6 @@ package org.core4j.xml;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.core4j.Enumerable;
 import org.core4j.Predicates;
 

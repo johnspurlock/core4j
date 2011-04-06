@@ -1,8 +1,6 @@
 package org.core4j.xml;
 
 
-import org.core4j.Enumerable;
-import org.core4j.Funcs;
 
 public abstract class XNode extends XObject {
 

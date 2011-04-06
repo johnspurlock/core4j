@@ -2,10 +2,6 @@ package org.core4j;
 
 import java.util.Stack;
 
-import org.core4j.Enumerable;
-import org.core4j.Func1;
-import org.core4j.ReadOnlyIterator;
-
 public class DepthFirstIterator<T> extends ReadOnlyIterator<T> {
 
 	

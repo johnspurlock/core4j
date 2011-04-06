@@ -13,7 +13,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-
 import org.core4j.DepthFirstIterator;
 import org.core4j.Enumerable;
 import org.core4j.Func;
@@ -183,6 +182,7 @@ public abstract class XContainer extends XNode {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private static Enumerable<Element> domElements(Element parent){
 		return domNodes(parent.getChildNodes()).ofType(Element.class);
 	}

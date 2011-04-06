@@ -1,7 +1,6 @@
 package org.core4j.test;
 import java.util.Iterator;
 
-
 import org.core4j.DepthFirstIterator;
 import org.core4j.Enumerable;
 import org.core4j.Func;

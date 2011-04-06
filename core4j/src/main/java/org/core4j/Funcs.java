@@ -91,8 +91,8 @@ public class Funcs {
 	}
 	
 	public static <TInstance,TReturn> Func1<TInstance,TReturn> method(final Class<TInstance> instanceClass, Class<TReturn> returnClass, final String methodName){
-		
 		return Funcs.wrap(new ThrowingFunc1<TInstance,TReturn>(){
+			@SuppressWarnings("unchecked")
 			public TReturn apply(TInstance input) throws Exception {
 				Method method = instanceClass.getMethod(methodName);
 				Object rt = method.invoke(input);
