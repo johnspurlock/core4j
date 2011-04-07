@@ -4,7 +4,7 @@
 
     <groupId>org.core4j</groupId>
     <artifactId>core4j</artifactId>
-    <version>0.4-SNAPSHOT</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
 
     <name>core4j</name>
@@ -54,6 +54,10 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration>
+                            <nodeprecated>true</nodeprecated>
+                            <bottom><![CDATA[<i><a href="http://core4j.org">http://core4j.org</a></i>]]></bottom>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
