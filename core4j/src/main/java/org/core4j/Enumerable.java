@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Enumerable<T> implements Iterable<T> {
 
@@ -70,6 +72,22 @@ public class Enumerable<T> implements Iterable<T> {
 
     public Set<T> toSet() {
         Set<T> rt = new HashSet<T>();
+        for (T value : values) {
+            rt.add(value);
+        }
+        return rt;
+    }
+    
+    public SortedSet<T> toSortedSet() {
+    	SortedSet<T> rt = new TreeSet<T>();
+        for (T value : values) {
+            rt.add(value);
+        }
+        return rt;
+    }
+    
+    public SortedSet<T> toSortedSet(Comparator<? super T> comparator) {
+    	SortedSet<T> rt = new TreeSet<T>(comparator);
         for (T value : values) {
             rt.add(value);
         }
