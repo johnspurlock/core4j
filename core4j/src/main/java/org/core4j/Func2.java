@@ -8,11 +8,11 @@ package org.core4j;
  */
 public interface Func2<T1, T2, TResult> {
 
-    /**
-     * Apply this function, returning the result
-     * @param input1 First function argument
-     * @param input2 Second function argument
-     * @return Function result
-     */
-    public abstract TResult apply(T1 input1, T2 input2);
+  /**
+   * Apply this function, returning the result
+   * @param input1 First function argument
+   * @param input2 Second function argument
+   * @return Function result
+   */
+  TResult apply(T1 input1, T2 input2);
 }

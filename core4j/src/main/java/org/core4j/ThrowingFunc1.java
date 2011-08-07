@@ -7,11 +7,11 @@ package org.core4j;
  */
 public interface ThrowingFunc1<T, TResult> {
 
-    /**
-     * Apply this function, returning the result (or throwing a checked exception)
-     * @param input Function argument
-     * @return Function result
-     * @throws Exception A checked exception
-     */
-    public abstract TResult apply(T input) throws Exception;
+  /**
+   * Apply this function, returning the result (or throwing a checked exception)
+   * @param input Function argument
+   * @return Function result
+   * @throws Exception A checked exception
+   */
+  TResult apply(T input) throws Exception;
 }

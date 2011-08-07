@@ -6,10 +6,10 @@ package org.core4j;
  */
 public interface ThrowingFunc<TResult> {
 
-    /**
-     * Apply this function, returning the result (or throwing a checked exception)
-     * @return Function result
-     * @throws Exception A checked exception
-     */
-    public abstract TResult apply() throws Exception;
+  /**
+   * Apply this function, returning the result (or throwing a checked exception)
+   * @return Function result
+   * @throws Exception A checked exception
+   */
+  TResult apply() throws Exception;
 }

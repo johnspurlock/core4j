@@ -6,9 +6,9 @@ package org.core4j;
  */
 public interface Func<TResult> {
 
-    /** 
-     * Apply this function, returning the result
-     * @return Function result
-     */
-    public abstract TResult apply();
+  /** 
+   * Apply this function, returning the result
+   * @return Function result
+   */
+  TResult apply();
 }

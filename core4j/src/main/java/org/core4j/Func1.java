@@ -7,10 +7,10 @@ package org.core4j;
  */
 public interface Func1<T, TResult> {
 
-    /**
-     * Apply this function, returning the result
-     * @param input Function argument
-     * @return Function result
-     */
-    public abstract TResult apply(T input);
+  /**
+   * Apply this function, returning the result
+   * @param input Function argument
+   * @return Function result
+   */
+  TResult apply(T input);
 }
