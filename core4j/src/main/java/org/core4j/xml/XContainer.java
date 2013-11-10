@@ -117,6 +117,8 @@ public abstract class XContainer extends XNode {
   }
 
   public void add(Object content) {
+    if (content == null)
+      return;
     XNode node = toNode(content);
     childNodes.add(node);
     if (this instanceof XElement) {
