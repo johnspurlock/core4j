@@ -5,7 +5,7 @@
 
   <groupId>org.core4j</groupId>
   <artifactId>core4j</artifactId>
-  <version>0.6-SNAPSHOT</version>
+  <version>0.6</version>
   <packaging>bundle</packaging>
 
   <name>core4j</name>
@@ -28,14 +28,14 @@
   </licenses>
 
   <issueManagement>
-    <system>code.google.com</system>
-    <url>http://code.google.com/p/core4j/issues/list</url>
+    <system>GitHub Issues</system>
+    <url>https://github.com/johnspurlock/core4j/issues</url>
   </issueManagement>
 
   <scm>
-    <connection>scm:hg:https://core4j.googlecode.com/hg/</connection>
-    <developerConnection>scm:hg:https://core4j.googlecode.com/hg/</developerConnection>
-    <url>http://code.google.com/p/core4j/source/browse/</url>
+    <connection>scm:git:git://github.com/johnspurlock/core4j.git</connection>
+    <developerConnection>scm:git:git://github.com/johnspurlock/core4j.git</developerConnection>
+    <url>https://github.com/johnspurlock/core4j</url>
   </scm>
 
   <developers>
